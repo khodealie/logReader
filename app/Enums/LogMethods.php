@@ -4,6 +4,7 @@ namespace App\Enums;
 
 enum LogMethods: string
 {
+    //list of method in log file
     case GET = 'GET';
     case POST = 'POST';
     case HEAD = 'HEAD';

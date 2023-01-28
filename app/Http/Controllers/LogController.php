@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
+    //get count of log file
     public function count(Request $request)
     {
         $request->validate([

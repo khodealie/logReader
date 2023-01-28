@@ -24,6 +24,8 @@ class ImportLog extends Command
      */
     protected $description = 'import log file via log file address';
 
+
+    //get timestamp from string date and time
     private function stringTime2Timestamp(string $stringTime): int
     {
         $temp = explode(":", $stringTime, 2);
@@ -32,6 +34,7 @@ class ImportLog extends Command
         return strtotime($date . ' ' . $time);
     }
 
+    //store every 10000 rows dataset and insert data to database
     private function queryBuilder(array $newInsertData): void
     {
         $this->insertArray[] = $newInsertData;
@@ -43,6 +46,7 @@ class ImportLog extends Command
         }
     }
 
+    //insert whatever is left for ending of main function
     private function flushInsertArray()
     {
         if (count($this->insertArray) > 0) {
@@ -51,6 +55,8 @@ class ImportLog extends Command
         }
     }
 
+
+    // refactor each line of log to an valid array
     private function logString2LogArray(string $logLine): void
     {
         $logLineExplode = explode(' ', $logLine);
@@ -67,6 +73,7 @@ class ImportLog extends Command
         }
     }
 
+    //main function for import log file
     public function handle(): int
     {
         $file = fopen($this->argument("file"), "r");
